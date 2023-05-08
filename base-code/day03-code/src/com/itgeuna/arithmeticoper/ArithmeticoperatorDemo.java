@@ -7,14 +7,18 @@ public class ArithmeticoperatorDemo {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("请输入3位数");
-        int i = sc.nextInt();
-        System.out.println("个位:" + i % 10);
-        System.out.println("十位:" + i / 10 % 10);
-        System.out.println("百位:" + i / 100 % 10);
-        byte b1 = 2;
-        byte b2 = 3;
-        byte bs = (byte) (b1 + b2);
-        System.out.println(bs);
+        System.out.println("请输入一个数");
+        int x = sc.nextInt();
+        int temp = x;
+        int num = 0;
+        while (x != 0) {
+            int ge = x % 10;
+            x = x / 10;
+            num = num * 10 + ge;
+        }
+        if (temp == num) {
+            System.out.println("回文数");
+        }
+
     }
 }
