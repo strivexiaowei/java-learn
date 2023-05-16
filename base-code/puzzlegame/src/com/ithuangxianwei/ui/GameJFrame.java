@@ -8,10 +8,17 @@ import java.util.Random;
 
 public class GameJFrame extends JFrame implements KeyListener {
     int[][] dataImage = new int[4][4];
+    int[][] winData = new int[][]{
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12},
+            {13, 14, 15, 0}
+    };
     // x y 当前0位置图片的位置
     int x;
     int y;
     String path = "puzzlegame\\image\\animal\\animal3\\";
+
     public GameJFrame() {
         // 初始化界面
         initJFrame();
@@ -47,17 +54,24 @@ public class GameJFrame extends JFrame implements KeyListener {
     // 初始化图片
     private void initImages() {
         this.getContentPane().removeAll();
+        if (isWin()) {
+            JLabel winJlb = new JLabel(new ImageIcon("puzzlegame\\image\\win.png"));
+            winJlb.setBounds(203, 283, 197, 197);
+            this.getContentPane().add(winJlb);
+        }
         // 添加背景图片
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 int num = dataImage[i][j];
-                JLabel jLabel = new JLabel(new ImageIcon(path + num + ".jpg"));
+
+                JLabel jLabel = new JLabel(new ImageIcon(new StringBuilder(path).append(num).append(".jpg").toString()));
 
                 jLabel.setBounds(105 * j + 83, 105 * i + 134, 105, 105);
                 jLabel.setBorder(new BevelBorder(1));
                 this.getContentPane().add(jLabel);
             }
         }
+
         JLabel bg = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
         bg.setBounds(40, 40, 508, 560);
         this.getContentPane().add(bg);
@@ -95,6 +109,16 @@ public class GameJFrame extends JFrame implements KeyListener {
         this.addKeyListener(this);
     }
 
+    private Boolean isWin () {
+        for (int i = 0; i < dataImage.length; i++) {
+            for (int j = 0; j < dataImage[i].length; j++) {
+                if (dataImage[i][j] != winData[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -102,16 +126,28 @@ public class GameJFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        int code = e.getKeyCode();
+        if (code == 65) {
+            this.getContentPane().removeAll();
+            JLabel allPng = new JLabel(new ImageIcon(new StringBuilder(path).append("all.jpg").toString()));
+            allPng.setBounds(83, 134, 420, 420);
+            this.getContentPane().add(allPng);
+            JLabel bg = new JLabel(new ImageIcon("puzzlegame\\image\\background.png"));
+            bg.setBounds(40, 40, 508, 560);
+            this.getContentPane().add(bg);
+            this.getContentPane().repaint();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (isWin()) {
+            return;
+        }
         int code = e.getKeyCode();
-        System.out.println(code);
         if (code == 37) {
             if (y == 3) {
-               return;
+                return;
             }
             dataImage[x][y] = dataImage[x][y + 1];
             dataImage[x][y + 1] = 0;
@@ -141,6 +177,17 @@ public class GameJFrame extends JFrame implements KeyListener {
             dataImage[x - 1][y] = 0;
             x--;
             initImages();
+        } else if (code == 65) {
+            initImages();
+        } else if (code == 87) {
+            dataImage = new int[][]{
+                    {1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 10, 11, 12},
+                    {13, 14, 15, 0}
+            };
+            initImages();
         }
+
     }
 }
