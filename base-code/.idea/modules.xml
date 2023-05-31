@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/base-code.iml" filepath="$PROJECT_DIR$/base-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/day02-code/day02-code.iml" filepath="$PROJECT_DIR$/day02-code/day02-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/doudizhu/doudizhu.iml" filepath="$PROJECT_DIR$/doudizhu/doudizhu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/io-code/io-code.iml" filepath="$PROJECT_DIR$/io-code/io-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/javatest/javatest.iml" filepath="$PROJECT_DIR$/javatest/javatest.iml" />
       <module fileurl="file://$PROJECT_DIR$/puzzlegame/puzzlegame.iml" filepath="$PROJECT_DIR$/puzzlegame/puzzlegame.iml" />
     </modules>
