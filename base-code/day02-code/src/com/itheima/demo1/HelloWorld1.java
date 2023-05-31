@@ -1,20 +1,13 @@
 package com.itheima.demo1;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
 
 public class HelloWorld1 {
-    public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
-        map.put("标枪选手", "马超");
-        map.put("人物挂件", "明世隐");
-        map.put("御龙骑士", "尹志平");
-        Set<Map.Entry<String, String>> entries = map.entrySet();
-        for (Map.Entry<String, String> entry : entries) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-        }
-        map.forEach((key, value) -> System.out.println(key + value));
+    public static void main(String[] args) throws IOException {
+        File file = new File("day02-code\\aaa");
+        file.mkdirs();
+        File file1 = new File(file, "a.txt");
+        file1.createNewFile();
     }
 }
